@@ -63,7 +63,8 @@ A arquitetura é dividida em três camadas principais:
 
 ```powershell
 pip install paho-mqtt streamlit
-```
+```ou caso não for:
+python -m streamlit run dashboard.py
 
 ### 3. Executar o Dashboard:
 
