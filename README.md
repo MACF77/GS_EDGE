@@ -69,7 +69,8 @@ pip install paho-mqtt streamlit
 
 ```powershell
 streamlit run dashboard.py
-```
+``` ou caso n for:
+python -m streamlit run dashboard.py
 
 ### 4. Arquivo `dashboard.py` :
 
