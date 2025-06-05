@@ -61,13 +61,13 @@ A arquitetura é dividida em três camadas principais:
 * Python 3.8+
 * Dependências:
 
-```bash
+```powershell
 pip install paho-mqtt streamlit
 ```
 
 ### 3. Executar o Dashboard:
 
-```bash
+```powershell
 streamlit run dashboard.py
 ```
 
