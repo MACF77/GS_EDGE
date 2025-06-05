@@ -71,7 +71,7 @@ pip install paho-mqtt streamlit
 streamlit run dashboard.py
 ```
 
-### 4. Arquivo `dashboard.py` (código completo):
+### 4. Arquivo `dashboard.py` :
 
 ```python
 import streamlit as st
