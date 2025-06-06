@@ -38,25 +38,49 @@ A arquitetura é dividida em três camadas principais:
 
 ## Funcionamento do Projeto
 
-Funcionamento do Projeto
-O ESP32 mede periodicamente a distância da água utilizando um sensor ultrassônico HC-SR04.
+Funcionamento do Projeto:
+Este sistema monitora o nível da água em tempo real utilizando sensores conectados ao ESP32 e exibe os dados em um painel gráfico desenvolvido com Python (Streamlit).
 
-Essa distância é convertida no nível da água em cm com base na altura total do reservatório (ex: 100 cm).
-
+Coleta de Dados (ESP32):
+O ESP32 mede a distância da água usando o sensor ultrassônico HC-SR04.
+A distância é convertida no nível da água (em cm) com base na altura total do reservatório (por exemplo, 400 cm).
 Mede também a temperatura e a umidade do ar com o sensor DHT22.
+Os dados são enviados via Wi-Fi para um broker MQTT público (HiveMQ).
 
-Os dados de nível da água, temperatura e umidade são enviados via Wi-Fi para um broker MQTT.
+Estrutura da Mensagem:
+Os dados são enviados no seguinte formato para o tópico enchente/nivel:
+Nivel: 120cm | Temp: 26.3C | Umidade: 71%
+📊 Monitoramento com Streamlit
+O dashboard desenvolvido em Python com Streamlit recebe os dados MQTT em tempo real.
 
-Um dashboard em Python recebe esses dados do MQTT e os exibe em tempo real com gráficos e alertas.
+Os dados são exibidos com:
 
-Quando o nível da água ultrapassa 80 cm, o sistema considera risco de enchente:
+Métricas de leitura atual
 
-Um LED vermelho acende.
+Gráficos de barra e linha
 
-Um alerta é exibido no display OLED e no painel gráfico.
+Atualização automática a cada 5 segundos
 
-Se o nível estiver abaixo de 80 cm, o sistema permanece em estado normal, com o LED azul aceso.
+Alerta visual com base no nível da água
 
+🚨 Lógica de Alerta por Nível da Água
+O sistema possui três níveis de alerta, conforme a altura da água:
+
+0 a 150 cm: Nível Normal
+
+LED azul aceso
+
+Mensagem de operação normal no OLED e painel
+
+151 a 249 cm: Alerta
+
+Mensagem de alerta no painel e display
+
+250 cm ou mais: Risco de Enchente
+
+LED vermelho aceso
+
+Alerta crítico no OLED e painel gráfico
 ---
 
 ## Instruções para Executar o Projeto
