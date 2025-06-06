@@ -38,11 +38,24 @@ A arquitetura é dividida em três camadas principais:
 
 ## Funcionamento do Projeto
 
-1. O ESP32 mede periodicamente a distância da água com o sensor ultrassônico.
-2. Mede temperatura e umidade com o sensor DHT22.
-3. Envia esses dados para o broker MQTT usando Wi-Fi.
-4. O dashboard Python recebe esses dados e os exibe em tempo real.
-5. Quando o nível da água está abaixo de 80 cm, os LEDs e buzzer são ativados e um alerta é mostrado no dashboard.
+Funcionamento do Projeto
+O ESP32 mede periodicamente a distância da água utilizando um sensor ultrassônico HC-SR04.
+
+Essa distância é convertida no nível da água em cm com base na altura total do reservatório (ex: 100 cm).
+
+Mede também a temperatura e a umidade do ar com o sensor DHT22.
+
+Os dados de nível da água, temperatura e umidade são enviados via Wi-Fi para um broker MQTT.
+
+Um dashboard em Python recebe esses dados do MQTT e os exibe em tempo real com gráficos e alertas.
+
+Quando o nível da água ultrapassa 80 cm, o sistema considera risco de enchente:
+
+Um LED vermelho acende.
+
+Um alerta é exibido no display OLED e no painel gráfico.
+
+Se o nível estiver abaixo de 80 cm, o sistema permanece em estado normal, com o LED azul aceso.
 
 ---
 
